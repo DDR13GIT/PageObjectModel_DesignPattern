@@ -12,7 +12,8 @@ public class HomePage extends basePage {
     private final By accountButtonLocator = By.xpath("//a[@href='/my-account/']");
 
     private static final Logger logger = LogManager.getLogger(HomePage.class);
-    public HomePage(WebDriver driver){
+
+    public HomePage(WebDriver driver) {
         super(driver);
     }
 
@@ -20,12 +21,7 @@ public class HomePage extends basePage {
         WebElement accountButton = driver.findElement(accountButtonLocator);
         Assert.assertTrue(accountButton.isDisplayed());
         logger.info("Clicking on Account Button");
-        try {
-            accountButton.click();
-        } catch (Exception e) {
-            take_screenshot();
-            System.out.println(e.getMessage());
-        }
+        click(accountButton);
     }
 
 }

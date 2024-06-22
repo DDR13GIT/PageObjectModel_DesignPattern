@@ -1,15 +1,19 @@
 package reusables;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.WebElement;
 
 import java.io.File;
 
 public class basePage {
-    static String ssLocation = "D:/webdrivers/ss/";
+    static String ssLocation = "screenshots/ss.png";
 
+    private static final Logger logger = LogManager.getLogger(basePage.class);
     protected WebDriver driver;
 
     public basePage(WebDriver driver) {
@@ -18,11 +22,28 @@ public class basePage {
 
     public void take_screenshot() {
         TakesScreenshot screenshot = (TakesScreenshot) driver;
-
         try {
             FileUtils.copyFile(screenshot.getScreenshotAs(OutputType.FILE), new File(ssLocation));
         } catch (Exception e) {
-            e.getMessage();
+            logger.error(e.getMessage());
+        }
+    }
+
+    public void sendKeys(WebElement element, String text) {
+        try {
+            element.sendKeys(text);
+        } catch (Exception e) {
+            take_screenshot();
+            logger.error(e.getMessage());
+        }
+    }
+
+    public void click(WebElement element) {
+        try {
+            element.click();
+        } catch (Exception e) {
+            take_screenshot();
+            logger.error(e.getMessage());
         }
     }
 }

@@ -22,35 +22,20 @@ public class AccountPage extends basePage {
     public void enterUsername(String username) {
         WebElement usernameTextBox = driver.findElement(usernameTextBoxLocator);
         logger.info("Inserting username");
-        try {
-            usernameTextBox.sendKeys(username);
-        } catch (Exception e) {
-            take_screenshot();
-            System.out.println(e.getMessage());
-        }
+        sendKeys(usernameTextBox, username);
     }
 
     public void enterPassword(String password) {
         WebElement passwordTextBox = driver.findElement(passwordTextBoxLocator);
         logger.info("Inserting password");
-        try {
-            passwordTextBox.sendKeys(password);
-        } catch (Exception e) {
-            take_screenshot();
-            System.out.println(e.getMessage());
-        }
+        sendKeys(passwordTextBox, password);
     }
 
     public void clickSignInButton() {
         WebElement signInButton = driver.findElement(signInButtonLocator);
         Assert.assertTrue(signInButton.isEnabled());
         logger.info("Clicking on sign in button");
-        try {
-            signInButton.click();
-        } catch (Exception e) {
-            take_screenshot();
-            System.out.println(e.getMessage());
-        }
+        click(signInButton);
     }
 
 }
