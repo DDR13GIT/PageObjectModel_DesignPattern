@@ -46,4 +46,13 @@ public class basePage {
             logger.error(e.getMessage());
         }
     }
+
+    public void clear(WebElement element) {
+        try {
+            element.clear();
+        } catch (Exception e) {
+            take_screenshot();
+            logger.error(e.getMessage());
+        }
+    }
 }
